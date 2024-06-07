@@ -36,9 +36,6 @@ class Program
         numbers.Sort();
         string sortedNumbers = string.Join(", ", numbers);
 
-
-
-
         Console.WriteLine($"Sum: {sum}");
         Console.WriteLine($"Average: {average}");
         Console.WriteLine($"Maximum: {max}");
