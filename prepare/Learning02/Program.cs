@@ -10,15 +10,11 @@ class Program
         job1._startYear = 2015;
         job1._endYear = 2018;
 
-        job1.Display();
-
         Job job2 = new Job();
         job2._company = "Apple";
         job2._jobTitle = "Software Engineer";
         job2._startYear = 2018;
         job2._endYear = 2020;
-
-        job2.Display();
 
         Resume resume = new Resume();
         resume._firstName = "Jorge";
