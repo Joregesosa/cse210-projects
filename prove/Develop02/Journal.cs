@@ -14,7 +14,7 @@ class Journal
         foreach (string line in lines)
         {
             Entry entry = new Entry();
-            string[] parts = line.Split(';');
+            string[] parts = line.Split('~');
             entry._creationDate = parts[0];
             entry._title = parts[1];
             entry._content = parts[2];
@@ -32,7 +32,7 @@ class Journal
             {
                 foreach (var entry in entryList)
                 {
-                    outputFile.WriteLine($"{entry._creationDate};{entry._title};{entry._content}");
+                    outputFile.WriteLine($"{entry._creationDate}~{entry._title}~{entry._content}");
                 }
             }
         }

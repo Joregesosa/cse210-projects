@@ -1,3 +1,4 @@
+/* I added a validation to verify if the file exists before loading the journal and using a ~ as a delimiter reading or writing the file. Also, load the prompt list from a file named prompts.csv*/
 using System;
 
 class Program
