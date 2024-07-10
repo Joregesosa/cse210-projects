@@ -6,32 +6,67 @@ class Activity
     private string _description;
     private int _duration;
 
-    public Activity(string name, string description, int duration)
+    public Activity(string name, string description)
     {
         _name = name;
         _description = description;
-        _duration = duration;
     }
- 
+
     public void DisplayStartingMessage()
     {
-        Console.WriteLine("Starting activity: " + _name);
-        Console.WriteLine("Description: " + _description);
-        Console.WriteLine("Duration: " + _duration + " minutes");
+        Console.WriteLine("Welcome to the " + _name + " activity.\n");
+        Console.WriteLine(_description + "\n");
+        Console.Write("How long, in seconds, would you like to do this activity? ");
+        _duration = Convert.ToInt32(Console.ReadLine());
+        Console.Clear();
     }
 
     public void DisplayEndingMessage()
     {
-        Console.WriteLine("Ending activity: " + _name);
+        Console.WriteLine("Well done!!");
+        ShowSpinner(5);
+        Console.WriteLine();
+        Console.WriteLine("You have completed another " + _duration + " seconds of the " + _name + " activity.");
+        ShowSpinner(5);
     }
 
-    public void ShowSpinner()
+    public void ShowSpinner(int seconds)
     {
-        Console.WriteLine("Showing spinner for activity: " + _name);
+        List<string> spinner = new List<string>();
+        spinner.Add("|");
+        spinner.Add("/");
+        spinner.Add("-");
+        spinner.Add("\\");
+
+        DateTime start = DateTime.Now;
+        DateTime end = start.AddSeconds(seconds);
+        int counter = 0;
+        while (DateTime.Now < end)
+        {
+            Console.Write(spinner[counter]);
+            Thread.Sleep(1000);
+            Console.Write("\b \b");
+
+            counter++;
+            if (counter >= spinner.Count)
+            {
+                counter = 0;
+            }
+        }
     }
 
-    public void ShowCountDown()
+    public void ShowCountDown(int seconds)
     {
-        Console.WriteLine("Showing countdown for activity: " + _name);
+        for (int i = seconds; i > 0; i--)
+        {
+            Console.Write(i);
+            Thread.Sleep(1000);
+            Console.Write("\b \b");
+        }
+    }
+
+    public int GetDuration()
+    {
+        return _duration;
     }
 }
