@@ -24,7 +24,9 @@ public class GoalManager
             Console.WriteLine("  3. Save Goals");
             Console.WriteLine("  4. Load Goals");
             Console.WriteLine("  5. Record Event");
-            Console.WriteLine("  6. Quit");
+            Console.WriteLine("  6. List Completed Goals");
+            Console.WriteLine("  7. List Incomplete Goals");
+            Console.WriteLine("  8. Quit");
             Console.Write(" Select a choice from the menu: ");
             choice = Console.ReadLine();
 
@@ -50,6 +52,14 @@ public class GoalManager
             }
             else if (choice == "6")
             {
+                ListCompletedGoals();
+            }
+            else if (choice == "7")
+            {
+                ListIncompleteGoals();
+            }
+            else if (choice == "8")
+            {
                 Console.WriteLine("Goodbye!");
             }
             else
@@ -57,7 +67,8 @@ public class GoalManager
                 Console.WriteLine("Invalid choice. Please try again.");
             }
 
-        } while (choice != "6");
+
+        } while (choice != "8");
     }
 
     public void DisplayPlayerInfo()
@@ -142,8 +153,7 @@ public class GoalManager
             Goal goal = _goals[goalIndex];
             goal.RecordEvent();
 
-            // Console.WriteLine(goal);
-            _score +=  goal.GetPoints();
+            _score += goal.GetPoints();
 
             Console.WriteLine(" Congratulations! You have earned " + goal.GetPoints() + " points.");
             Console.WriteLine(" You now have " + _score + " points.");
@@ -212,5 +222,33 @@ public class GoalManager
         }
     }
 
+    public void ListCompletedGoals()
+    {
+        Console.Clear();
+        Console.WriteLine(" The completed goals are: ");
+        for (int i = 0; i < _goals.Count; i++)
+        {
+            Goal goal = _goals[i];
+            if (goal.IsComplete())
+            {
+                Console.WriteLine($"  {i + 1}. {goal.GetShortName()}");
+            }
+        }
+        Console.WriteLine();
+    }
 
+    public void ListIncompleteGoals()
+    {
+        Console.Clear();
+        Console.WriteLine(" The incomplete goals are: ");
+        for (int i = 0; i < _goals.Count; i++)
+        {
+            Goal goal = _goals[i];
+            if (!goal.IsComplete())
+            {
+                Console.WriteLine($"  {i + 1}. {goal.GetShortName()}");
+            }
+        }
+        Console.WriteLine();
+    }
 }
