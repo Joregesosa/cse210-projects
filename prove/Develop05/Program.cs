@@ -1,3 +1,4 @@
+/* I add options to show completed goals and uncompleted goals */
 using System;
 
 class Program
